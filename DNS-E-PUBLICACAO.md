@@ -84,14 +84,38 @@ Salve a zona. A propagação costuma levar de alguns minutos a algumas horas.
 
 ## Etapa 4 — conferir a propagação (eu, ou você)
 
+⛔ **Sempre contra um resolvedor PÚBLICO, nunca o da máquina:**
+
 ```bash
-nslookup murundu.eng.br
-nslookup www.murundu.eng.br
+nslookup murundu.eng.br 8.8.8.8
+nslookup -type=CNAME www.murundu.eng.br 8.8.8.8
 ```
 
 O primeiro tem de devolver os quatro IPs `185.199.*`; o segundo, o
-`engphcg.github.io`. Enquanto devolver outra coisa, ainda não propagou —
-espere, não mexa nos registros.
+`engphcg.github.io`.
+
+🔴 **Os dois jeitos de esta conferência mentir, medidos em 08/09/2026 — as duas
+mentiras dizem "não existe" sobre uma zona que está certa:**
+
+1. **O resolvedor da máquina (e o do provedor) guardam a resposta ANTIGA.** A
+   zona já tinha os quatro IPs no Google DNS e esta máquina continuava com
+   `Could not resolve host` — por 15 min, que é o TTL. `ipconfig /flushdns` não
+   resolve: o cache que importa é o do provedor. ⇒ Se precisar provar que o
+   site responde antes de o cache virar, force o IP:
+   ```bash
+   curl -o /dev/null --resolve "murundu.eng.br:80:185.199.108.153" -w "%{http_code}
+" http://murundu.eng.br/
+   ```
+2. ⭐ **Perguntar ao servidor autoritativo ERRADO.** Um `nslookup -type=NS` deu
+   `a.auto.dns.br`/`b.auto.dns.br` — de cache velho. Os autoritativos desta
+   zona são `d.sec.dns.br`/`f.sec.dns.br`. Interrogado, o servidor errado
+   respondeu `NOERROR, answers=0` **com flag de resposta autoritativa** — e
+   isso tem exatamente a cara de "a zona está vazia". Foi com base nisso que se
+   acusou, errado, que a zona não tinha sido salva.
+   ⇒ **Calibre o instrumento antes de acreditar nele:** faça a MESMA pergunta
+   sobre um domínio que você sabe que funciona (aqui, `murundu.app.br`). Se a
+   resposta for "não tenho" para os dois, o problema é o instrumento, não a
+   zona.
 
 ---
 
