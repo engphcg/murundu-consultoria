@@ -102,9 +102,26 @@ nav { display: flex; align-items: center; gap: clamp(0.5rem, 2vw, 1.5rem); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr); align-items: center; gap: clamp(2rem, 7vw, 7rem); }
 .context-line { margin: 0 0 1.2rem; color: var(--clay); font-weight: 720; }
 h1, h2, h3, p { overflow-wrap: break-word; }
-h1, h2, h3 { margin-top: 0; color: var(--forest); line-height: 1.08; letter-spacing: -0.035em; }
-h1 { max-width: 13ch; margin-bottom: 1.5rem; font-size: clamp(2.75rem, 6vw, 5.9rem); font-weight: 740; }
-h2 { margin-bottom: 1.15rem; font-size: clamp(2rem, 4vw, 3.7rem); font-weight: 720; }
+/* `hyphens` age ANTES do `overflow-wrap`: se uma palavra longa não couber, ela
+   é hifenizada (o <html lang="pt-BR"> dá o dicionário) em vez de cortada no
+   meio sem sinal nenhum. O `break-word` fica como última rede, para o layout
+   nunca estourar na horizontal. */
+h1, h2, h3 { margin-top: 0; color: var(--forest); line-height: 1.08; letter-spacing: -0.035em; hyphens: auto; }
+/* Os dois números do <h1> são MEDIDOS, e são duas restrições independentes —
+   a palavra mais longa do título é "empreendimento":
+   · max-width: ela mede 14,12ch nesta pilha de fontes, então qualquer valor
+     em `ch` abaixo disso a parte no meio em QUALQUER tamanho de fonte. O
+     13ch original fazia exatamente isso. 16ch dá ~13% de folga para as fontes
+     dos outros sistemas (a proporção palavra/"0" muda entre Segoe UI, Roboto
+     e San Francisco), e ainda é medida curta de manchete.
+   · piso do clamp: a 360 px o contêiner do título tem 323 px, e a palavra só
+     cabe aí até 40 px. 2.4rem = 38,4 px. */
+h1 { max-width: 16ch; margin-bottom: 1.5rem; font-size: clamp(2.4rem, 6vw, 5.3rem); font-weight: 740; }
+/* Teto medido a 1920 px: o h2 mais apertado é o do bloco de processo, numa
+   coluna de 462 px, e a palavra mais longa dele ("acompanhamento") só cabe
+   até 56,3 px. 3.3rem = 52,8 px deixa ~6% de folga. Os outros dezesseis
+   títulos da página têm folga de sobra neste valor. */
+h2 { margin-bottom: 1.15rem; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 720; }
 h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
 .hero-lead { max-width: 43rem; margin: 0; color: var(--muted); font-size: clamp(1.08rem, 1.8vw, 1.35rem); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
@@ -114,15 +131,22 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
 .territory ellipse:last-child { fill: var(--clay); stroke: var(--clay); opacity: 0.8; }
 .territory p { max-width: 18rem; margin: 1.5rem 0 0; color: var(--forest); font-size: 1.1rem; font-weight: 700; }
 
+.inside-view { border-block: 1px solid var(--line); background: var(--forest); color: var(--on-dark); }
+.inside-view-layout { display: grid; grid-template-columns: minmax(12rem, 0.55fr) minmax(0, 1.45fr); gap: clamp(2rem, 7vw, 7rem); }
+.experience-period { margin: 0; color: var(--clay); font-weight: 760; }
+.inside-view h2 { max-width: 16ch; color: var(--on-dark); }
+.inside-view-layout > div > p { max-width: var(--reading-width); margin-bottom: 0; font-size: clamp(1.08rem, 1.7vw, 1.25rem); }
+
 .section-heading { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(16rem, 1.1fr); align-items: end; gap: 2rem; margin-bottom: clamp(2.5rem, 5vw, 4.5rem); }
 .section-heading h2, .section-heading p { margin-bottom: 0; }
 .section-heading p { max-width: var(--reading-width); color: var(--muted); }
 .services { border-top: 1px solid var(--line); background: var(--paper); }
 .service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
 .service { min-width: 0; padding: clamp(1.5rem, 3vw, 2.5rem); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.service-wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr); gap: 2rem; }
 .service p { max-width: 44rem; margin: 0; color: var(--muted); }
-.service .service-note { margin-top: 1rem; font-size: 0.94rem; }
+.service ul { margin: 1.1rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+.service li + li { margin-top: 0.65rem; }
+.service li::marker { color: var(--clay); }
 
 .process { background: var(--forest); color: var(--on-dark); }
 .process h2 { color: var(--on-dark); }
@@ -145,13 +169,11 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
 .software-layout h2 { font-size: clamp(1.8rem, 3.4vw, 3.1rem); }
 .software-layout p { max-width: var(--reading-width); margin-top: 0; font-size: 1.12rem; }
 
-.profile-layout { display: grid; grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.28fr); align-items: center; gap: clamp(2.5rem, 8vw, 8rem); }
-.portrait-placeholder { min-width: 0; padding: 2rem; border: 1px solid var(--line); background: var(--paper); color: var(--dry-green); text-align: center; box-shadow: var(--shadow); }
-.portrait-placeholder svg { width: min(100%, 20rem); margin-inline: auto; }
-.portrait-placeholder path { fill: none; stroke: currentColor; stroke-width: 1.5; }
-.portrait-placeholder span { display: block; margin-top: 1rem; color: var(--muted); font-size: 0.88rem; }
+.profile-layout { display: grid; grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.28fr); align-items: start; gap: clamp(2.5rem, 8vw, 8rem); }
+.profile-intro { padding-top: 0.75rem; border-top: 0.3rem solid var(--clay); }
 .profile-copy { max-width: 42rem; }
 .profile-name { margin-bottom: 0.35rem; color: var(--clay); font-size: 1.35rem; font-weight: 760; }
+.profile-title { margin: 0; color: var(--muted); font-weight: 680; }
 
 .contact { background: var(--clay); color: var(--on-dark); }
 .contact h2 { max-width: 15ch; color: var(--on-dark); }
@@ -178,13 +200,10 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
 
 @media (max-width: 47.99rem) {
   .header-link { display: none; }
-  .hero-grid, .section-heading, .process-layout, .software-layout, .profile-layout, .contact-layout { grid-template-columns: 1fr; }
+  .hero-grid, .inside-view-layout, .section-heading, .process-layout, .software-layout, .profile-layout, .contact-layout { grid-template-columns: 1fr; }
   .territory { width: min(100%, 28rem); padding: 1.5rem 0 0; border-top: 1px solid var(--line); border-left: 0; }
   .territory svg { max-height: 18rem; }
-  .service-wide { display: block; }
-  .service-wide h3 { margin-bottom: 0.8rem; }
   .process .section-heading { margin-bottom: 1rem; }
-  .portrait-placeholder { width: min(100%, 24rem); }
 }
 
 @media (max-width: 35rem) {
@@ -192,7 +211,6 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
   .brand-description { display: none; }
   .button-small { max-width: 11.5rem; line-height: 1.15; }
   .service-grid, .work-list { grid-template-columns: 1fr; }
-  .service-wide { grid-column: auto; }
   .footer-inner { flex-direction: column; }
 }
 

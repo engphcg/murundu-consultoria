@@ -125,6 +125,13 @@ def check_stylesheet(path: Path, failures: list[str]) -> None:
 
 
 def main(root: Path | None = None) -> int:
+    # No Windows o stdout herda a página de código do console (cp1252 nesta
+    # máquina): as mensagens acentuadas saem truncadas para quem lê e quebram
+    # com UnicodeDecodeError quem lê pelo cano — foi assim que os testes deste
+    # arquivo erravam. O relatório é sempre UTF-8, seja qual for o console.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
     base = root or Path(__file__).resolve().parent
     failures: list[str] = []
     check_html(base / "index.html", failures)

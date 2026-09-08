@@ -24,7 +24,7 @@ Também é possível abrir `index.html` diretamente, mas o servidor local reprod
 python verificar.py
 ```
 
-O verificador bloqueia a publicação enquanto houver marcadores de conteúdo, URLs externas não autorizadas, imagens sem texto alternativo, quantidade incorreta de títulos principais ou `CNAME` inválido. Nesta etapa, a reprovação por conteúdo pendente é intencional.
+O verificador bloqueia a publicação se houver marcadores de conteúdo, URLs externas não autorizadas, imagens sem texto alternativo, quantidade incorreta de títulos principais ou `CNAME` inválido. Com os dados reais preenchidos, a execução deve terminar com zero falhas.
 
 Os testes comportamentais do verificador podem ser executados com:
 
@@ -32,6 +32,24 @@ Os testes comportamentais do verificador podem ser executados com:
 python -m unittest -v test_verificar.py
 ```
 
+## O que o verificador NÃO alcança: as 5 larguras
+
+`verificar.py` lê os arquivos; ele não calcula layout, então **não** enxerga
+texto quebrado no meio da palavra nem estouro horizontal. Isso se confere com o
+navegador aberto, em 360 · 390 · 768 · 1280 · 1920 px, medindo no DOM (não só
+olhando a captura):
+
+- `document.documentElement.scrollWidth > innerWidth` tem de ser `false`;
+- para cada título, a palavra mais longa tem de caber na largura útil do
+  elemento — foi assim que se achou o `max-width: 16ch` do `<h1>` (a palavra
+  "empreendimento" mede 14,12ch: qualquer valor menor a parte no meio, em
+  QUALQUER tamanho de fonte) e os tetos dos `clamp` de `h1` e `h2`.
+
+Repita essa medição sempre que mudar o texto de um título ou a largura de uma
+coluna. Palavra longa nova é o gatilho.
+
 ## Publicação futura
 
-Depois de substituir todos os marcadores listados em `PENDENCIAS-DE-CONTEUDO.md` e obter uma verificação sem falhas, os arquivos podem ser publicados diretamente pelo GitHub Pages. O domínio, sitemap e processamento sem Jekyll já estão configurados nos arquivos estáticos. Nenhuma publicação ou configuração remota foi realizada neste repositório.
+Depois de obter uma verificação sem falhas, os arquivos podem ser publicados diretamente pelo GitHub Pages. O domínio, sitemap e processamento sem Jekyll já estão configurados nos arquivos estáticos. A fotografia profissional permanece opcional e está documentada em `PENDENCIAS-DE-CONTEUDO.md`. Nenhuma publicação ou configuração remota foi realizada neste repositório.
+O passo a passo completo — DNS no Registro.br, GitHub Pages e a ordem em que
+cada etapa tem de acontecer — está em `DNS-E-PUBLICACAO.md`.

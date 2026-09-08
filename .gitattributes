@@ -1,0 +1,3 @@
+# O site é servido como arquivo estático: a quebra de linha no repositório é LF,
+# em qualquer máquina, para o diff não virar ruído de CRLF no Windows.
+* text=auto eol=lf
