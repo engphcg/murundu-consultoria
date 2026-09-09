@@ -11,8 +11,10 @@ from urllib.parse import urlparse
 
 
 # Exceções externas autorizadas pelo dono e pelo contrato público da página.
+# Tudo na PRÓPRIA origem é permitido: canonical, og:url, og:image e qualquer
+# asset futuro. Não é exceção, é o site apontando para si mesmo.
+ORIGEM_PROPRIA = "https://murundu.eng.br"
 ALLOWED_EXTERNAL_URLS = {
-    "https://murundu.eng.br/",  # URL canônica e og:url do site.
     "https://murundu.app.br",  # Software citado com autorização expressa do dono.
 }
 ALLOWED_CONTACT_PREFIXES = (
@@ -53,6 +55,8 @@ class PageParser(HTMLParser):
 
 
 def is_allowed_external(url: str) -> bool:
+    if url == ORIGEM_PROPRIA or url.startswith(ORIGEM_PROPRIA + "/"):
+        return True
     if url in ALLOWED_EXTERNAL_URLS or url.startswith(ALLOWED_CONTACT_PREFIXES):
         return True
     parsed = urlparse(url)
