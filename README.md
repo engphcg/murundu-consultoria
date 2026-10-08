@@ -4,7 +4,11 @@ Landing page estática da consultoria ambiental Murundu, com atuação em Mato G
 
 ## Direção editorial e visual
 
-A página segue a ideia de um **dossiê territorial** e usa a identidade visual da marca Murundu: o símbolo (um "M" de camadas de solo, com curva de nível, folha e o ponto do levantamento), o logotipo e a paleta medida na arte. Hierarquia tipográfica, linhas de processo e grade documental completam o conjunto. A estrutura sugerida no brief foi mantida, com uma nota técnica curta sobre o programa Murundu inserida depois dos trabalhos.
+O desenho segue o idioma das consultorias de engenharia e meio ambiente, e não o de landing de produto: **superfície plana, cantos retos (2 px), linhas finas no lugar de sombras e caixas, e uma grade que se repete**. Cada seção abre do mesmo jeito — rótulo numerado ("01 — Serviços"), título à esquerda, texto de apoio à direita —, e a repetição é o que dá ar de sistema. Os serviços são um **índice** (número, título, itens separados por filetes), não um mosaico de cartões; os números do topo ("7+", "3", "2", "63.313") saem todos do texto já presente na página.
+
+A identidade é a da marca Murundu (símbolo, logotipo e paleta medida na arte; ver "A marca") mais uma **textura cartográfica**: curvas de nível de um campo de murundus, o montículo de terra do Cerrado, geradas por `assets/gerar_relevo.py` e aplicadas como máscara CSS (`assets/relevo.svg`), na cor do tema. Ela aparece sempre em área vazia, nunca atrás de texto corrido. ⚠️ Máscaras CSS **não carregam** de `file://` (o navegador trata o arquivo local como origem opaca): para ver a textura ao conferir localmente, use o servidor (`python -m http.server`), como na seção abaixo.
+
+Faixas escuras só em três lugares (barra institucional, posicionamento do IMASUL e contato/rodapé); o resto alterna dois tons de creme. Não há botão flutuante: o WhatsApp está na barra institucional, no cartão do responsável técnico, no contato e no rodapé. A estrutura sugerida no brief foi mantida, com uma nota técnica curta sobre o programa Murundu depois dos trabalhos.
 
 ## A marca
 
@@ -46,7 +50,7 @@ python -m http.server 8000
 
 Depois acesse `http://localhost:8000/` no navegador.
 
-Também é possível abrir `index.html` diretamente, mas o servidor local reproduz melhor a navegação entre páginas.
+Também é possível abrir `index.html` diretamente, mas o servidor local reproduz melhor a navegação entre páginas **e é o único jeito de ver a textura de relevo** (máscaras CSS não carregam de `file://`).
 
 ## Verificar antes de publicar
 
@@ -101,7 +105,18 @@ Source Serif 4 (títulos) e Inter (texto) ficam em `assets/fonts/`, em WOFF2 var
 
 ## Depoimentos
 
-O site é estático e não recebe dados de visitantes. O botão "Enviar meu depoimento" abre o e-mail do visitante com um modelo e a pergunta de autorização. Ao receber um depoimento **com autorização expressa**, copie o `<figure class="depoimento">` que está comentado em `#depoimentos` no `index.html` e preencha. Não invente nem edite o sentido de depoimentos, e não adicione `Review`/`AggregateRating` ao JSON-LD sem avaliações reais e verificáveis.
+O site é estático e não recebe dados de visitantes. Enquanto não há depoimento publicado, **não existe seção de depoimentos**: uma seção vazia ("conte como foi") passa a impressão contrária à que se quer. O convite ficou numa linha discreta no contato ("Já foi atendido? Envie seu depoimento"), que abre o e-mail do visitante com um modelo e a pergunta de autorização.
+
+Ao receber um depoimento **com autorização expressa**, crie uma seção `#depoimentos` entre "Quem atende" e "Dúvidas", com o cabeçalho padrão (rótulo numerado, título, apoio) e um `<figure class="depoimento">` por cliente:
+
+```html
+<figure class="depoimento">
+  <blockquote><p>Texto autorizado pelo cliente.</p></blockquote>
+  <figcaption><strong>Nome</strong><span>Cargo, empresa · tipo de serviço</span></figcaption>
+</figure>
+```
+
+Não invente nem edite o sentido de depoimentos, e não adicione `Review`/`AggregateRating` ao JSON-LD sem avaliações reais e verificáveis.
 
 ## Publicação futura
 
