@@ -19,8 +19,11 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="geo.region" content="BR-MS">
   <meta name="geo.placename" content="Campo Grande">
-  <meta name="theme-color" content="#17372f">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#fbf4e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1008" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/favicon-escuro.png" type="image/png" sizes="64x64">
+  <link rel="icon" href="assets/favicon-claro.png" type="image/png" sizes="64x64" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/styles.css">
@@ -33,6 +36,7 @@
     "name": "Murundu Consultoria Ambiental",
     "description": "Consultoria em licenciamento ambiental, estudos ambientais, resíduos sólidos, recursos hídricos e geoprocessamento, com base em Campo Grande, Mato Grosso do Sul.",
     "image": "https://murundu.eng.br/assets/og.png",
+    "logo": "https://murundu.eng.br/assets/marca/murundu_marca_web.png",
     "telephone": "+5567992489428",
     "email": "eng.phcg@gmail.com",
     "inLanguage": "pt-BR",
@@ -219,15 +223,10 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="#inicio" aria-label="Murundu Consultoria Ambiental — início">
-        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-          <rect width="64" height="64" rx="12"/>
-          <path d="M12 43c8-13 13-20 20-20s12 7 20 20M16 48c7-10 11-15 16-15s9 5 16 15"/>
-          <circle cx="32" cy="18" r="4"/>
-        </svg>
-        <span class="brand-text">
-          <span class="brand-name">Murundu</span>
-          <span class="brand-description">Consultoria Ambiental</span>
-        </span>
+        <picture>
+          <source srcset="assets/marca/murundu_logotipo_claro.svg" media="(prefers-color-scheme: dark)">
+          <img class="brand-logo" src="assets/marca/murundu_logotipo.svg" alt="" width="944" height="246">
+        </picture>
       </a>
       <nav aria-label="Navegação principal">
         <a class="header-link" href="#servicos">Serviços</a>
@@ -252,16 +251,17 @@
           </div>
         </div>
         <div class="territory" aria-hidden="true">
-          <svg viewBox="0 0 560 520" role="presentation">
+          <svg viewBox="0 0 560 520" role="presentation" preserveAspectRatio="xMidYMid slice">
             <path d="M51 99c58-56 113-41 154-4 48 44 104 35 151-5 44-37 92-37 143 5"/>
             <path d="M31 151c65-45 127-37 173 6 49 45 104 36 158-5 50-39 104-30 167 11"/>
             <path d="M27 213c78-42 142-26 185 15 43 40 99 34 157-3 57-37 109-23 167 20"/>
             <path d="M31 283c79-35 143-17 188 20 45 36 99 32 154 0 63-37 112-16 157 25"/>
             <path d="M45 355c66-31 130-20 176 14 51 37 107 36 157 7 58-34 105-20 139 13"/>
             <path d="M74 421c55-24 103-22 155 5 53 28 102 33 151 12 45-20 89-14 119 7"/>
-            <ellipse cx="281" cy="260" rx="86" ry="61"/>
-            <ellipse cx="281" cy="260" rx="45" ry="30"/>
+            <ellipse cx="281" cy="260" rx="150" ry="108"/>
+            <ellipse cx="281" cy="260" rx="105" ry="76"/>
           </svg>
+          <img class="territory-mark" src="assets/marca/murundu_marca_web.png" alt="" width="350" height="409">
           <p>Leitura do território<br>para decisões documentadas.</p>
         </div>
       </div>
@@ -484,7 +484,7 @@
   <footer class="site-footer">
     <div class="shell footer-grid">
       <div class="footer-brand">
-        <p class="footer-name">Murundu Consultoria Ambiental</p>
+        <img class="footer-logo" src="assets/marca/murundu_logotipo_claro.svg" alt="Murundu — Consultoria Ambiental" width="944" height="246">
         <p>Pedro Henrique Carvalho Gonçalves<br>Engenheiro Ambiental · CREA-MS 63.313</p>
       </div>
       <nav class="footer-nav" aria-label="Rodapé">
