@@ -199,9 +199,10 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight
 }
 .territory svg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; -webkit-mask-image: linear-gradient(#000 62%, transparent 84%); mask-image: linear-gradient(#000 62%, transparent 84%); }
 .territory path, .territory ellipse { fill: none; stroke: currentColor; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-/* Tamanho nativo do arquivo é 350 px; a 11rem (176 px) ele aparece nítido
-   até em tela 2x. Ampliar além disso fabricaria detalhe que a arte não tem. */
-.territory-mark { position: relative; align-self: center; justify-self: center; width: min(11rem, 55%); height: auto; }
+/* O símbolo é VETOR (assets/marca/murundu_marca.svg, traçado da arte por
+   assets/vetorizar_marca.py), então fica nítido em qualquer tamanho e em
+   qualquer densidade de tela. */
+.territory-mark { position: relative; align-self: center; justify-self: center; width: min(13.5rem, 62%); height: auto; }
 .territory p { position: relative; margin: 0; color: #231406; font-size: 1.05rem; font-weight: 700; }
 
 .trust-strip {
