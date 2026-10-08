@@ -6,8 +6,11 @@
   <title>Página não encontrada | Murundu Consultoria Ambiental</title>
   <meta name="description" content="A página solicitada não foi encontrada.">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#17372f">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#fbf4e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1008" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/favicon-escuro.png" type="image/png" sizes="64x64">
+  <link rel="icon" href="assets/favicon-claro.png" type="image/png" sizes="64x64" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/styles.css">
@@ -16,15 +19,10 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="./" aria-label="Murundu Consultoria Ambiental — início">
-        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-          <rect width="64" height="64" rx="12"/>
-          <path d="M12 43c8-13 13-20 20-20s12 7 20 20M16 48c7-10 11-15 16-15s9 5 16 15"/>
-          <circle cx="32" cy="18" r="4"/>
-        </svg>
-        <span class="brand-text">
-          <span class="brand-name">Murundu</span>
-          <span class="brand-description">Consultoria Ambiental</span>
-        </span>
+        <picture>
+          <source srcset="assets/marca/murundu_logotipo_claro.svg" media="(prefers-color-scheme: dark)">
+          <img class="brand-logo" src="assets/marca/murundu_logotipo.svg" alt="" width="944" height="246">
+        </picture>
       </a>
     </div>
   </header>
