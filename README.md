@@ -48,6 +48,14 @@ olhando a captura):
 Repita essa medição sempre que mudar o texto de um título ou a largura de uma
 coluna. Palavra longa nova é o gatilho.
 
+## Fontes
+
+Source Serif 4 (títulos) e Inter (texto) ficam em `assets/fonts/`, em WOFF2 variável, subconjunto latino, com as licenças SIL OFL ao lado. Nada é pedido a servidores de terceiros. Trocar a fonte de um título muda a largura das palavras: refaça a medição das 5 larguras descrita acima.
+
+## Depoimentos
+
+O site é estático e não recebe dados de visitantes. O botão "Enviar meu depoimento" abre o e-mail do visitante com um modelo e a pergunta de autorização. Ao receber um depoimento **com autorização expressa**, copie o `<figure class="depoimento">` que está comentado em `#depoimentos` no `index.html` e preencha. Não invente nem edite o sentido de depoimentos, e não adicione `Review`/`AggregateRating` ao JSON-LD sem avaliações reais e verificáveis.
+
 ## Publicação futura
 
 Depois de obter uma verificação sem falhas, os arquivos podem ser publicados diretamente pelo GitHub Pages. O domínio, sitemap e processamento sem Jekyll já estão configurados nos arquivos estáticos. A fotografia profissional permanece opcional e está documentada em `PENDENCIAS-DE-CONTEUDO.md`. Nenhuma publicação ou configuração remota foi realizada neste repositório.

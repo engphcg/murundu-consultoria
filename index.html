@@ -21,6 +21,8 @@
   <meta name="geo.placename" content="Campo Grande">
   <meta name="theme-color" content="#17372f">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/styles.css">
   <script type="application/ld+json">
   {
@@ -217,13 +219,22 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="#inicio" aria-label="Murundu Consultoria Ambiental — início">
-        <span class="brand-name">Murundu</span>
-        <span class="brand-description">Consultoria Ambiental</span>
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <rect width="64" height="64" rx="12"/>
+          <path d="M12 43c8-13 13-20 20-20s12 7 20 20M16 48c7-10 11-15 16-15s9 5 16 15"/>
+          <circle cx="32" cy="18" r="4"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Murundu</span>
+          <span class="brand-description">Consultoria Ambiental</span>
+        </span>
       </a>
       <nav aria-label="Navegação principal">
         <a class="header-link" href="#servicos">Serviços</a>
+        <a class="header-link" href="#processo">Como funciona</a>
+        <a class="header-link" href="#quem-e">Quem atende</a>
         <a class="header-link" href="#duvidas">Dúvidas</a>
-        <a class="button button-small" href="#contato">Falar sobre um processo</a>
+        <a class="button button-small" href="#contato"><span class="cta-long">Falar sobre um processo</span><span class="cta-short">Contato</span></a>
       </nav>
     </div>
   </header>
@@ -254,6 +265,14 @@
           <p>Leitura do território<br>para decisões documentadas.</p>
         </div>
       </div>
+      <div class="shell">
+        <ul class="trust-strip" aria-label="Credenciais">
+          <li><strong>CREA-MS 63.313</strong><span>Engenheiro Ambiental com registro e responsabilidade técnica</span></li>
+          <li><strong>Mais de 7 anos</strong><span>em licenciamento municipal, estadual e federal</span></li>
+          <li><strong>Ex-analista do IMASUL</strong><span>conhece o critério de análise do órgão</span></li>
+          <li><strong>UFMS · 2018</strong><span>Bacharel em Engenharia Ambiental</span></li>
+        </ul>
+      </div>
     </section>
 
     <section class="inside-view section" aria-labelledby="titulo-experiencia-orgao">
@@ -274,6 +293,7 @@
         </div>
         <div class="service-grid">
           <article class="service">
+            <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="m9 15 2 2 4-4"/></svg>
             <h3>Licenciamento ambiental — LP, LI e LO</h3>
             <p>Para instalar, operar, renovar ou regularizar um empreendimento, conduzo processos municipais, estaduais e federais.</p>
             <ul>
@@ -283,6 +303,7 @@
             </ul>
           </article>
           <article class="service">
+            <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.2-4.2"/></svg>
             <h3>Estudos ambientais e perícia judicial</h3>
             <p>Quando o processo pede avaliação, projeto ou manifestação técnica, elaboro:</p>
             <ul>
@@ -293,6 +314,7 @@
             </ul>
           </article>
           <article class="service">
+            <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>
             <h3>PGRS, PGRSS e resíduos sólidos</h3>
             <p>Para atender ao licenciamento e estruturar controles ambientais, preparo:</p>
             <ul>
@@ -302,6 +324,7 @@
             </ul>
           </article>
           <article class="service">
+            <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>
             <h3>Outorga de água, DURH e saneamento</h3>
             <p>Para regularizar o uso da água e reduzir impactos sobre o terreno, atuo em:</p>
             <ul>
@@ -311,6 +334,7 @@
             </ul>
           </article>
           <article class="service">
+            <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>
             <h3>CAR, geoprocessamento e imóvel rural</h3>
             <p>Para demonstrar as condições do imóvel e instruir decisões, realizo:</p>
             <ul>
@@ -321,6 +345,7 @@
             </ul>
           </article>
           <article class="service">
+            <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>
             <h3>ITR e apoio a licitações</h3>
             <p>Quando a demanda combina documentação ambiental, tributária ou administrativa, ofereço apoio técnico para:</p>
             <ul>
@@ -387,6 +412,25 @@
       </div>
     </section>
 
+    <section class="testimonials section" id="depoimentos" aria-labelledby="titulo-depoimentos">
+      <div class="shell testimonials-layout">
+        <div>
+          <h2 id="titulo-depoimentos">Já foi atendido? Conte como foi.</h2>
+          <p>Os depoimentos publicados neste site vêm de clientes que autorizaram, por escrito, o uso do texto e do nome. Nada é editado em seu sentido nem publicado sem esse aval.</p>
+        </div>
+        <div class="testimonials-body">
+          <!-- Depoimentos aprovados entram aqui, um <figure class="depoimento"> por cliente:
+          <figure class="depoimento">
+            <blockquote><p>Texto autorizado pelo cliente.</p></blockquote>
+            <figcaption><strong>Nome</strong><span>Cargo, empresa · tipo de serviço</span></figcaption>
+          </figure>
+          -->
+          <p class="testimonials-empty">Seu relato ajuda outras pessoas a escolher com segurança. Ele chega por e-mail, e a publicação só acontece com a sua autorização.</p>
+          <a class="button" href="mailto:eng.phcg@gmail.com?subject=Depoimento%20sobre%20a%20Murundu%20Consultoria%20Ambiental&amp;body=Nome%3A%0ACargo%20e%20empresa%20%28opcional%29%3A%0ATipo%20de%20servi%C3%A7o%20contratado%3A%0A%0ADepoimento%3A%0A%0A%0AAutorizo%20a%20publica%C3%A7%C3%A3o%20deste%20depoimento%2C%20com%20o%20nome%20informado%20acima%2C%20no%20site%20murundu.eng.br%3F%20%28responda%20SIM%20ou%20N%C3%83O%29">Enviar meu depoimento</a>
+        </div>
+      </div>
+    </section>
+
     <section class="faq section" id="duvidas" aria-labelledby="titulo-duvidas">
       <div class="shell">
         <div class="section-heading">
@@ -429,8 +473,8 @@
           <p>Envie o tipo de atividade, o município e, se houver, o documento ou a notificação recebida.</p>
         </div>
         <address class="contact-links">
-          <a href="https://wa.me/5567992489428">WhatsApp (67) 99248-9428</a>
-          <a href="mailto:eng.phcg@gmail.com">eng.phcg@gmail.com</a>
+          <a class="button button-light" href="https://wa.me/5567992489428">WhatsApp (67) 99248-9428</a>
+          <a class="button button-outline" href="mailto:eng.phcg@gmail.com">eng.phcg@gmail.com</a>
           <span>Campo Grande · atendimento remoto em todo o Brasil</span>
         </address>
       </div>
@@ -438,10 +482,33 @@
   </main>
 
   <footer class="site-footer">
-    <div class="shell footer-inner">
+    <div class="shell footer-grid">
+      <div class="footer-brand">
+        <p class="footer-name">Murundu Consultoria Ambiental</p>
+        <p>Pedro Henrique Carvalho Gonçalves<br>Engenheiro Ambiental · CREA-MS 63.313</p>
+      </div>
+      <nav class="footer-nav" aria-label="Rodapé">
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Como funciona</a>
+        <a href="#quem-e">Quem atende</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="footer-contact">
+        <a href="https://wa.me/5567992489428">WhatsApp (67) 99248-9428</a>
+        <a href="mailto:eng.phcg@gmail.com">eng.phcg@gmail.com</a>
+        <span>Campo Grande · Mato Grosso do Sul</span>
+      </div>
+    </div>
+    <div class="shell footer-legal">
       <p>© Pedro Henrique Carvalho Gonçalves · Murundu Consultoria Ambiental</p>
       <p>Este site não usa cookies nem coleta dados pessoais.</p>
     </div>
   </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/5567992489428" aria-label="Falar pelo WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.5-4A8 8 0 1 1 20 11.5z"/><path d="M9 8.5c0 3 3 6 6 6l1-1.5-2-1-1 .8c-.8-.3-1.700-1.200-2-2l.8-1-1-2z"/></svg>
+    <span>WhatsApp</span>
+  </a>
 </body>
 </html>
