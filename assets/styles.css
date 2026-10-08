@@ -267,6 +267,15 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight
 .profile-name { margin-bottom: 0.35rem; color: var(--accent-text); font-size: 1.35rem; font-weight: 760; }
 .profile-title { margin: 0; color: var(--muted); font-weight: 680; }
 
+.trajetoria { margin-top: clamp(3.5rem, 7vw, 6rem); }
+.trajetoria h3 { margin-bottom: 1.5rem; font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.timeline { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.timeline li { display: grid; grid-template-columns: minmax(8rem, 0.26fr) minmax(0, 1fr); gap: 0.5rem clamp(1.5rem, 5vw, 4rem); padding: 1.4rem 0; border-bottom: 1px solid var(--line); }
+.timeline-period { color: var(--accent-text); font-size: 0.95rem; font-weight: 760; }
+.timeline strong { display: block; color: var(--heading); font-size: 1.12rem; line-height: 1.3; }
+.timeline-org { display: block; margin-top: 0.15rem; color: var(--muted); font-size: 0.95rem; }
+.timeline p { max-width: var(--reading-width); margin: 0.5rem 0 0; color: var(--muted); }
+
 .contact { background: var(--accent-fill); color: #fff9ee; }
 .contact h2 { max-width: 15ch; color: #fff9ee; }
 .contact-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr); align-items: end; gap: clamp(2.5rem, 8vw, 8rem); }
@@ -368,6 +377,7 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight
   .hero-grid, .inside-view-layout, .section-heading, .process-layout, .software-layout, .profile-layout, .testimonials-layout, .contact-layout { grid-template-columns: 1fr; }
   .territory { min-height: 21rem; }
   .process .section-heading { margin-bottom: 1rem; }
+  .timeline li { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 35rem) {
