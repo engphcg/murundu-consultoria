@@ -62,21 +62,38 @@ Os testes comportamentais do verificador podem ser executados com:
 python -m unittest -v test_verificar.py
 ```
 
-## O que o verificador NÃO alcança: as 5 larguras
+## O que o verificador NÃO alcança: títulos e larguras
 
 `verificar.py` lê os arquivos; ele não calcula layout, então **não** enxerga
-texto quebrado no meio da palavra nem estouro horizontal. Isso se confere com o
-navegador aberto, em 360 · 390 · 768 · 1280 · 1920 px, medindo no DOM (não só
-olhando a captura):
+palavra de título partida entre linhas nem estouro horizontal. Isso se mede
+no navegador, com o script do repositório:
 
-- `document.documentElement.scrollWidth > innerWidth` tem de ser `false`;
-- para cada título, a palavra mais longa tem de caber na largura útil do
-  elemento — foi assim que se achou o `max-width: 16ch` do `<h1>` (a palavra
-  "empreendimento" mede 14,12ch: qualquer valor menor a parte no meio, em
-  QUALQUER tamanho de fonte) e os tetos dos `clamp` de `h1` e `h2`.
+```
+npm install playwright
+node scripts/medir_titulos.js        # exit 1 se achar qualquer defeito
+```
 
-Repita essa medição sempre que mudar o texto de um título ou a largura de uma
-coluna. Palavra longa nova é o gatilho.
+Ele percorre 10 larguras (320 a 1920 px) nos temas claro e escuro e reprova:
+palavra de título **partida entre linhas**, título com **`hyphens: auto`**,
+título mais largo que a própria caixa e rolagem horizontal da página.
+
+**Regra: título nunca é hifenizado** (`hyphens: manual`). A hifenização
+automática não age só quando a palavra é mais larga que a coluna: o navegador
+hifeniza sempre que ela não cabe no *fim da linha corrente*, mesmo cabendo
+inteira na linha de baixo — foi assim que "empreendimento" virou
+"empreendi-/mento" e "consultoria" virou "con-/sultoria" no celular. (Este
+README e o CSS já afirmaram que a hifenização *protegia* o título; estava
+errado.) ⚠️ O defeito só aparece com o dicionário pt-BR instalado, que o
+Chromium de teste não tem — por isso o script confere também a **causa**
+(`hyphens`), e não só o sintoma.
+
+Palavra composta com hífen real ("lava-jato") leva `<span class="nao-quebra">`
+para não partir no hífen. O título principal tem **dois níveis**
+(`.h1-main` forte e `.h1-sub` mais leve, na cor de destaque): a hierarquia
+dispensa quebra forçada, e cada nível só quebra entre palavras.
+
+Rode o script sempre que mudar o texto de um título ou a largura de uma coluna.
+Palavra longa nova é o gatilho.
 
 ## Fontes
 
