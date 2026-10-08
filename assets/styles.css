@@ -261,8 +261,12 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight
 
 .software { border-block: 1px solid var(--line); background: var(--paper); }
 .software-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: center; gap: clamp(2.5rem, 7vw, 7rem); }
-.software-copy h2 { max-width: 18ch; font-size: clamp(1.9rem, 3.4vw, 3rem); }
+.software-copy h2 { max-width: 24ch; font-size: clamp(1.9rem, 3.4vw, 3rem); }
 .software-copy > p { max-width: var(--reading-width); margin-top: 0; font-size: 1.12rem; }
+.software-points { max-width: var(--reading-width); margin: 0 0 1.5rem; padding: 0; list-style: none; }
+.software-points li { position: relative; margin: 0; padding: 0.55rem 0 0.55rem 1.5rem; color: var(--muted); }
+.software-points li::before { position: absolute; left: 0; top: 1.15rem; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--accent-line); content: ""; }
+.software-points strong { color: var(--heading); }
 .software-tagline { color: var(--accent-text); font-family: var(--font-display); font-size: 1.35rem !important; font-weight: 650; }
 /* O cartão é sempre creme, como o painel do topo: o símbolo tem camadas em
    tinta escura que sumiriam sobre fundo escuro. */
