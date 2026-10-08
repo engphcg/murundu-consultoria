@@ -1,3 +1,24 @@
+/* Fontes hospedadas no próprio site (licença SIL OFL 1.1, textos em assets/fonts/):
+   nada é pedido a servidores de terceiros, então o site segue sem rastreio e a
+   regra do verificar.py contra URLs externas continua valendo. Só o subconjunto
+   latino, que cobre todo o português. */
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations"), url("fonts/inter-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Serif 4 Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 900;
+  src: url("fonts/source-serif-4-latin-wght-normal.woff2") format("woff2-variations"), url("fonts/source-serif-4-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --sand: #f3f0e6;
@@ -12,6 +33,8 @@
   --line: #c9c7b9;
   --focus: #005fcc;
   --on-dark: #fffdf7;
+  --font-body: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
   --max-width: 76rem;
   --reading-width: 46rem;
   --radius-small: 0.35rem;
@@ -49,7 +72,7 @@ body {
   overflow-x: hidden;
   background: var(--sand);
   color: var(--ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
   text-rendering: optimizeLegibility;
@@ -85,7 +108,7 @@ svg { display: block; max-width: 100%; }
 .brand-mark path { fill: none; stroke: var(--sand); stroke-width: 4; stroke-linecap: round; }
 .brand-mark circle { fill: var(--clay); }
 .brand-text { display: flex; flex-direction: column; }
-.brand-name { color: var(--forest); font-size: 1.4rem; font-weight: 760; letter-spacing: -0.04em; }
+.brand-name { color: var(--forest); font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
 .brand-description { margin-top: 0.3rem; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
 nav { display: flex; align-items: center; gap: clamp(0.5rem, 1.6vw, 1.5rem); }
 .header-link { min-height: 2.75rem; display: inline-flex; align-items: center; padding-inline: 0.25rem; font-size: 0.95rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; }
@@ -127,7 +150,7 @@ h1, h2, h3, p { overflow-wrap: break-word; }
    é hifenizada (o <html lang="pt-BR"> dá o dicionário) em vez de cortada no
    meio sem sinal nenhum. O `break-word` fica como última rede, para o layout
    nunca estourar na horizontal. */
-h1, h2, h3 { margin-top: 0; color: var(--forest); line-height: 1.08; letter-spacing: -0.035em; hyphens: auto; text-wrap: balance; }
+h1, h2, h3 { margin-top: 0; color: var(--forest); font-family: var(--font-display); line-height: 1.12; letter-spacing: -0.02em; hyphens: auto; text-wrap: balance; }
 /* Os dois números do <h1> são MEDIDOS, e são duas restrições independentes —
    a palavra mais longa do título é "empreendimento":
    · max-width: ela mede 14,12ch nesta pilha de fontes, então qualquer valor
@@ -137,13 +160,13 @@ h1, h2, h3 { margin-top: 0; color: var(--forest); line-height: 1.08; letter-spac
      e San Francisco), e ainda é medida curta de manchete.
    · piso do clamp: a 360 px o contêiner do título tem 323 px, e a palavra só
      cabe aí até 40 px. 2.4rem = 38,4 px. */
-h1 { max-width: 16ch; margin-bottom: 1.5rem; font-size: clamp(2.4rem, 5vw, 4.1rem); font-weight: 740; }
+h1 { max-width: 18ch; margin-bottom: 1.5rem; font-size: clamp(2.2rem, 4.6vw, 3.9rem); font-weight: 650; }
 /* Teto medido a 1920 px: o h2 mais apertado é o do bloco de processo, numa
    coluna de 462 px, e a palavra mais longa dele ("acompanhamento") só cabe
    até 56,3 px. 3.3rem = 52,8 px deixa ~6% de folga. Os outros dezesseis
    títulos da página têm folga de sobra neste valor. */
-h2 { margin-bottom: 1.15rem; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 720; }
-h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
+h2 { margin-bottom: 1.15rem; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 620; }
+h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight: 650; }
 .hero-lead { max-width: 40rem; margin: 0; color: var(--muted); font-size: clamp(1.08rem, 1.6vw, 1.25rem); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 2rem; }
 .territory {
@@ -272,6 +295,18 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
 .error-card h1 { max-width: 12ch; }
 .error-card > p { max-width: 38rem; color: var(--muted); font-size: 1.12rem; }
 
+.testimonials { border-top: 1px solid var(--line); background: var(--sand); }
+.testimonials-layout { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; gap: clamp(2rem, 7vw, 7rem); }
+.testimonials-layout h2 { max-width: 16ch; }
+.testimonials-layout > div > p { max-width: var(--reading-width); margin-top: 0; color: var(--muted); }
+.testimonials-body { display: grid; gap: 1.5rem; justify-items: start; }
+.testimonials-empty { margin: 0; padding-left: 1.25rem; border-left: 0.25rem solid var(--clay); color: var(--muted); font-size: 1.1rem; }
+.depoimento { margin: 0; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--line); border-radius: 0.5rem; background: var(--paper); }
+.depoimento blockquote { margin: 0; font-family: var(--font-display); font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.45; }
+.depoimento blockquote p { margin: 0; }
+.depoimento figcaption { margin-top: 1rem; color: var(--muted); font-size: 0.95rem; }
+.depoimento figcaption strong { display: block; color: var(--forest); }
+
 .faq { border-top: 1px solid var(--line); background: var(--paper); }
 .faq-list { border-top: 1px solid var(--line); }
 .duvida { border-bottom: 1px solid var(--line); }
@@ -312,7 +347,7 @@ h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); }
 
 @media (max-width: 47.99rem) {
   .header-link { display: none; }
-  .hero-grid, .inside-view-layout, .section-heading, .process-layout, .software-layout, .profile-layout, .contact-layout { grid-template-columns: 1fr; }
+  .hero-grid, .inside-view-layout, .section-heading, .process-layout, .software-layout, .profile-layout, .testimonials-layout, .contact-layout { grid-template-columns: 1fr; }
   .territory svg { max-height: 16rem; }
   .process .section-heading { margin-bottom: 1rem; }
 }
