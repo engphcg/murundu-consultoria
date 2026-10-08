@@ -157,25 +157,33 @@ nav { display: flex; align-items: center; gap: clamp(0.5rem, 1.6vw, 1.5rem); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr); align-items: center; gap: clamp(2rem, 6vw, 6rem); }
 .context-line { display: inline-block; margin: 0 0 1.4rem; padding: 0.35rem 0.85rem; border: 1px solid var(--line); border-radius: 2rem; background: var(--paper); color: var(--accent-text); font-size: 0.9rem; font-weight: 720; }
 h1, h2, h3, p { overflow-wrap: break-word; }
-/* `hyphens` age ANTES do `overflow-wrap`: se uma palavra longa não couber, ela
-   é hifenizada (o <html lang="pt-BR"> dá o dicionário) em vez de cortada no
-   meio sem sinal nenhum. O `break-word` fica como última rede, para o layout
-   nunca estourar na horizontal. */
-h1, h2, h3 { margin-top: 0; color: var(--heading); font-family: var(--font-display); line-height: 1.12; letter-spacing: -0.02em; hyphens: auto; text-wrap: balance; }
-/* Os dois números do <h1> são MEDIDOS, e são duas restrições independentes —
-   a palavra mais longa do título é "empreendimento":
-   · max-width: ela mede 14,12ch nesta pilha de fontes, então qualquer valor
-     em `ch` abaixo disso a parte no meio em QUALQUER tamanho de fonte. O
-     13ch original fazia exatamente isso. 16ch dá ~13% de folga para as fontes
-     dos outros sistemas (a proporção palavra/"0" muda entre Segoe UI, Roboto
-     e San Francisco), e ainda é medida curta de manchete.
-   · piso do clamp: a 360 px o contêiner do título tem 323 px, e a palavra só
-     cabe aí até 40 px. 2.4rem = 38,4 px. */
-h1 { max-width: 18ch; margin-bottom: 1.5rem; font-size: clamp(2.2rem, 4.6vw, 3.9rem); font-weight: 650; }
-/* Teto medido a 1920 px: o h2 mais apertado é o do bloco de processo, numa
-   coluna de 462 px, e a palavra mais longa dele ("acompanhamento") só cabe
-   até 56,3 px. 3.3rem = 52,8 px deixa ~6% de folga. Os outros dezesseis
-   títulos da página têm folga de sobra neste valor. */
+/* TÍTULO NUNCA É HIFENIZADO. `hyphens: auto` não hifeniza só a palavra que não
+   cabe na coluna: o navegador hifeniza sempre que a palavra não cabe no FIM da
+   linha corrente, mesmo quando caberia inteira na linha de baixo. Foi assim que
+   "empreendimento" virou "empreendi-/mento" e "consultoria" virou "con-/sultoria"
+   no celular — e este comentário já afirmou o contrário (que a hifenização
+   protegia o título). ⚠️ Só aparece com dicionário pt-BR instalado: o Chromium
+   headless de teste NÃO o tem, então a medição de máquina de build era cega a
+   este defeito. Por isso o remédio é ESTRUTURAL, e não "medir de novo":
+   · `hyphens: manual` — nenhuma quebra de palavra, em nenhum navegador;
+   · o tamanho de cada título é dimensionado para a palavra mais longa CABER
+     inteira na coluna (medido por scripts/medir_titulos.js, que também acusa
+     qualquer palavra partida entre linhas);
+   · `overflow-wrap: break-word` fica só como última rede, e a medição prova
+     que ela nunca é acionada. */
+h1, h2, h3 { margin-top: 0; color: var(--heading); font-family: var(--font-display); line-height: 1.12; letter-spacing: -0.02em; hyphens: manual; text-wrap: balance; }
+/* Palavra composta com hífen real ("lava-jato") quebraria no hífen. */
+.nao-quebra { white-space: nowrap; }
+/* Título principal em DOIS NÍVEIS: uma linha de marca, forte, e o complemento
+   mais leve e na cor de destaque. A hierarquia dispensa quebra forçada: cada
+   nível quebra só entre palavras, e a palavra mais longa ("empreendimento") é
+   medida contra a coluna mais estreita (320 px). */
+h1 { margin-bottom: 1.5rem; font-size: 1rem; font-weight: 650; }
+.h1-main { display: block; font-size: clamp(2.3rem, 5.4vw, 4.5rem); font-weight: 650; letter-spacing: -0.03em; line-height: 1.04; }
+.h1-sub { display: block; margin-top: 0.7rem; color: var(--accent-text); font-size: clamp(1.4rem, 2.6vw, 2.25rem); font-weight: 440; letter-spacing: -0.015em; line-height: 1.2; }
+/* Teto do h2 medido a 1920 px: o mais apertado é o do bloco de processo, numa
+   coluna de 462 px, e a palavra mais longa ("acompanhamento") só cabe até
+   56,3 px. 3.3rem = 52,8 px deixa ~6% de folga. */
 h2 { margin-bottom: 1.15rem; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 620; }
 h3 { margin-bottom: 0.8rem; font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight: 650; }
 .hero-lead { max-width: 40rem; margin: 0; color: var(--muted); font-size: clamp(1.08rem, 1.6vw, 1.25rem); }
